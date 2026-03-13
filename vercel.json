@@ -6,31 +6,23 @@
       "use": "@vercel/node"
     },
     {
-      "src": "Client/package.json",
+      "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
-        "buildCommand": "npm run build",
-        "distDir": "build"
+        "installCommand": "cd Client && npm install && npm run build",
+        "buildCommand": "cd Backend && npm install && cd ..",
+        "outputDirectory": "Client/build"
       }
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "Backend/server.js"
-    },
-    {
-      "handle": "filesystem"
+      "dest": "/Backend/server.js"
     },
     {
       "src": "/(.*)",
-      "dest": "/Client/$1",
-      "check": true
-    },
-    {
-      "src": "/(.*)",
-      "status": 404,
-      "dest": "Client/index.html"
+      "dest": "/Client/build/index.html"
     }
   ]
 }
