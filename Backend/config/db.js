@@ -15,23 +15,14 @@ const connectDB = async () => {
       `mongoDB connected : ${conn.connection.host}`.cyan.underline.bold,
     );
   } catch (error) {
-    console.error('MongoDB connection failed:', error);
-    // if the atlas URI failed and we're not already using localhost, try local
-    if (uri.includes('mongodb+srv') && uri !== 'mongodb://localhost:27017/expensetracker') {
-      console.warn('Attempting fallback to local MongoDB instance...');
-      try {
-        const fallback = await mongoose.connect('mongodb://localhost:27017/expensetracker', {
-          serverSelectionTimeoutMS: 3000,
-        });
-        console.log(
-          `mongoDB connected to local instance : ${fallback.connection.host}`.cyan.underline.bold,
-        );
-        return;
-      } catch (err2) {
-        console.error('Local MongoDB connection also failed:', err2);
-      }
-    }
-    process.exit(1);
+    // MongoDB is not available (e.g., not installed/running locally or Atlas not reachable).
+    // We keep the server running using an in-memory store so the app remains usable.
+    console.error('MongoDB connection error:', error.message);
+
+    global.useInMemoryDB = true;
+    global.inMemoryTransactions = global.inMemoryTransactions || [];
+
+    console.warn('MongoDB not available; running with in-memory fallback storage. Data will not persist after restart.');
   }
 };
 
