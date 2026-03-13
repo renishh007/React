@@ -1,0 +1,6 @@
+Server:  dns.google
+Address:  8.8.8.8
+
+traversy.dorf46k.mongodb.net	text =
+
+	"authSource=admin&replicaSet=atlas-hlvqmc-shard-0"

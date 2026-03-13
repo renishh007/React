@@ -1,0 +1,18 @@
+Server:  dns.google
+Address:  8.8.8.8
+
+_mongodb._tcp.traversy.dorf46k.mongodb.net	SRV service location:
+	  priority       = 0
+	  weight         = 0
+	  port           = 27017
+	  svr hostname   = ac-32zsfvt-shard-00-00.dorf46k.mongodb.net
+_mongodb._tcp.traversy.dorf46k.mongodb.net	SRV service location:
+	  priority       = 0
+	  weight         = 0
+	  port           = 27017
+	  svr hostname   = ac-32zsfvt-shard-00-01.dorf46k.mongodb.net
+_mongodb._tcp.traversy.dorf46k.mongodb.net	SRV service location:
+	  priority       = 0
+	  weight         = 0
+	  port           = 27017
+	  svr hostname   = ac-32zsfvt-shard-00-02.dorf46k.mongodb.net
